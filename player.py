@@ -4,8 +4,6 @@ from circleshape import CircleShape
 from shot import Shot
 
 class Player(CircleShape):
-    containers = ()
-
     def __init__(self, x, y) -> None:
         super().__init__(x, y, PLAYER_RADIUS)
         self.rotation = 0
@@ -50,5 +48,4 @@ class Player(CircleShape):
         shot = Shot(self.position.x,self.position.y)
         shot.velocity = pygame.Vector2(0, 1).rotate(self.rotation) * PLAYER_SHOT_SPEED
         self.timer = PLAYER_SHOOT_COOLDOWN
-        #print(f"Shot created at {shot.position}, velocity: {shot.velocity}")
 

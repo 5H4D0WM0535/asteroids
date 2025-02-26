@@ -22,8 +22,6 @@ def main():
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
     asteroid_field = AsteroidField()
 
-
-
     print("Starting Asteroids!")
     print(f"Screen width: {SCREEN_WIDTH}")
     print(f"Screen height: {SCREEN_HEIGHT}")
@@ -36,11 +34,16 @@ def main():
                 return
         
         updateable.update(dt)
-        shots.update(dt)
+
         for asteroid in asteroids:
             if asteroid.collision(player):
                 print("Game Over!")
                 return
+            for shot in shots:
+                if asteroid.collision(shot):
+                    asteroid.split()
+                    shot.kill()
+
         screen.fill("black")
         for img in drawable:
             img.draw(screen)
